@@ -1,0 +1,41 @@
+.ui.container
+    .ui.two.column.stackable.grid
+        .twelve.wide.column
+            table.ui.inverted.table.bottom-shadow
+                tr
+                    th Naam
+                    th Voorkeur Datum
+                    th Vervoer
+                    th Prijs vervoer
+                    th Extra Kogels
+                    th Totaal (&euro;)
+                each person in persons
+                    tr(id=person.name)
+                        td #{person.name}
+                        td
+                            a.datePicker(type='text' id=person.name)
+                                if person.date
+                                    = person.date
+                                else
+                                    | Kies
+                        td
+                            .ui.labeled.dropdown(data-value=setSelected(person.name))
+                                .text Kies vervoer
+                                i.dropdown.icon
+                                .menu
+                                    each transport in transports
+                                        unless transport.full
+                                            .item #{transport.type}
+                                        else
+                                            .disabled.item #{transport.type}
+                        td= getTransportPrice(person.transport)
+                        td
+                            .ui.toggle.checkbox(id='#{person.name}Bullets' data-checked=setChecked(person.name))
+                                input(type='checkbox' name='bullets')
+                        td=totalPrice(person.name)
+
+            +trafficInformation
+        .four.wide.column
+            +information
+
+            +paymentInformation
