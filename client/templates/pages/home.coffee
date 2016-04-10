@@ -5,6 +5,9 @@ transport = new ReactiveVar()
 datePickActivePerson = ''
 
 Template.home.rendered = ->
+  $('.message .close').click ->
+    $(this).closest('.message').transition('fade')
+
   Meteor.setTimeout ->
     $('.datePicker').pickadate
       disable: [
