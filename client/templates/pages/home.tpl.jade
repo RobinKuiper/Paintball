@@ -11,7 +11,7 @@
                     th Totaal (&euro;)
                 each person in persons
                     tr(id=person.name)
-                        td #{person.name}
+                        td(class=unknown(person.name)) #{person.name}
                         td
                             a.datePicker(type='text' id=person.name)
                                 if person.date

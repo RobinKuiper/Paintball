@@ -16,6 +16,7 @@ Template.home.rendered = ->
   , 2000
 
 Template.home.helpers
+  unknown: (name) -> return if name == 'Onbekend' then 'red' else ''
   totalPrice: (person) ->
     person = Person.findOne { name: person }
     bullets = if isEven(person.bullets) then bulletprice else 0
